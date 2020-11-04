@@ -1,4 +1,4 @@
-const transpose = require('../../d2/matrix_transpositions')
+const transpose = require('./matrix_transpositions')
 
 const wordSearch = (letters, word) => { 
     if (word === ''){
