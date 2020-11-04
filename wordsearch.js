@@ -1,8 +1,32 @@
+const transpose = require('../../d2/matrix_transpositions')
+
 const wordSearch = (letters, word) => { 
-    const horizontalJoin = letters.map(ls => ls.join(''))
-    for (l of horizontalJoin) {
-        if (l.includes(word)) return true
+    if (word === ''){
+        return undefined;
+    }
+    const targetWord = word.toUpperCase();
+    const originalArray = letters;
+    const transposedArray = transpose(letters);
+
+    const wordFinder = function(arr, str){
+        const arrayAsString = arr.map(ls => ls.join(''));
+        for (l of arrayAsString) {
+            let l2 = l.split('').reverse().join('');
+            if (l.includes(str) || l2.includes(str)) {
+                return true
+            };
+        };
+        return false
+    };
+
+    if (wordFinder(originalArray, targetWord) || wordFinder(transposedArray, targetWord)) {
+        return true;
+    } else {
+        return false;
     }
 }
 
+
+
 module.exports = wordSearch
+
